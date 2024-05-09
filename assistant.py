@@ -488,7 +488,7 @@ def auto_prompt(message):
 
 def load_image(file_path, scale=0.333):
     # Helper function to load and scale the image
-    image = Image.open(file_path)
+    image = Image.open("./core/"+file_path)
     original_width, original_height = image.size
     new_width = int(original_width * scale)
     new_height = int(original_height * scale)
@@ -504,7 +504,7 @@ def create_app():
     ctypes.windll.shcore.SetProcessDpiAwareness(1)
     root = Ctk.CTk()
     root.title("AI Drone Assistant")
-    root.iconbitmap("media/headico.ico")
+    root.iconbitmap("core/media/headico.ico")
     root.overrideredirect(True)
     root.attributes('-topmost', True)
     root.wm_attributes("-transparentcolor", 'gray')
