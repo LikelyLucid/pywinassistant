@@ -1,5 +1,5 @@
 import asyncio
-from ollama import AsyncClient
+from ollama import AsyncClient, Client
 import aiofiles
 import json
 import os
@@ -123,10 +123,20 @@ async def test_model_speed(model_name):
 def get_fastest_ips(model_name):
     return asyncio.run(test_model_speed(model_name))
 
-def get_openai_url(model_name):
+def get_openai_url(model_name, vision_model="llava:34b"):
     ips = get_fastest_ips(model_name)
     fastest = ips[0][0]
-    return f"http://{fastest}:11434/api"
+
+    client = Client(host=f"{fastest}:11434", proxies=proxy)
+
+    try:
+        client.chat(vision_model)
+    except client.ResponseError as e:
+        print('Error:', e.error)
+        if e.status_code == 404:
+            client.pull(vision_model)
+
+    return f"http://{fastest}:11434/api/"
 
 
 
