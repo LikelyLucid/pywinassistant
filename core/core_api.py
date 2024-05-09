@@ -7,11 +7,13 @@ from openai import OpenAI
 using_ollama = True
 
 if using_ollama:
+    MODEL_NAME = "llama3:70b"
     ips = get_fastest_ips(MODEL_NAME)
     if ips:
         fastest_ip = ips[0][0]
         print(f"Using fastest IP: {fastest_ip}")
         client = Client(host=f"{fastest_ip}:11434/", timeout=120)
+
 else:
     client = OpenAI(api_key="insert_your_api_key_here")
     # Available models: "gpt-4-1106-preview", "gpt-3.5-turbo-1106", or "davinci-codex"
@@ -22,8 +24,8 @@ else:
 
 
 def api_call(messages, model_name=MODEL_NAME, temperature=0.5, max_tokens=150):
-    # if model_name == "gpt-4-1106-preview":
-    #     model_name = "gpt-3.5-turbo-1106"
+    if model_name == "gpt-4-1106-preview":
+        model_name = "llama3:70b"
     try:
         if using_ollama:
             response = client.chat(model=model_name, messages=messages, temperature=temperature, max_tokens=max_tokens)
