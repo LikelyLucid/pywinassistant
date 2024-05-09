@@ -12,6 +12,7 @@ MODEL_NAME = MAIN_MODEL
 def api_call(messages, model_name=MODEL_NAME, temperature=0.5, max_tokens=150):
     # if model_name == "gpt-4-1106-preview":
     #     model_name = "gpt-3.5-turbo-1106"
+    model_name = MAIN_MODEL
     try:
         # Execute the chat completion using the chosen model
         response = client.chat.completions.create(
