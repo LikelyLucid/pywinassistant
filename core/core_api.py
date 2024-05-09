@@ -1,6 +1,6 @@
 from openai import OpenAI
 
-client = OpenAI(api_key='insert_your_api_key_here')
+# client = OpenAI(api_key='insert_your_api_key_here')
 # Available models: "gpt-4-1106-preview", "gpt-3.5-turbo-1106", or "davinci-codex"
 MODEL_NAME = "gpt-3.5-turbo-1106"
 
@@ -34,6 +34,7 @@ def api_call(messages, model_name=MODEL_NAME, temperature=0.5, max_tokens=150):
         return decision
     except Exception as e:
         raise Exception(f"An error occurred: {e}")
+
 
 
 # # Replace this payload with the actual messages sequence for your use case # # Test
