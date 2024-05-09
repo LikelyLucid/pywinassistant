@@ -5,7 +5,7 @@ import requests
 import io
 from PIL import Image
 
-from ollama_url import get_url
+from core.ollama_url import get_url
 
 url, MAIN_MODEL, VISION_MODEL = get_url()
 # Assuming that the `activate_window_title` function is defined in another module correctly
