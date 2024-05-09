@@ -123,6 +123,12 @@ async def test_model_speed(model_name):
 def get_fastest_ips(model_name):
     return asyncio.run(test_model_speed(model_name))
 
+def get_openai_url(model_name):
+    ips = get_fastest_ips(model_name)
+    fastest = ips[0][0]
+    return f"http://{fastest}:11434/api"
+
+
 
 # Example usage
 if __name__ == "__main__":
