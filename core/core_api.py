@@ -2,12 +2,12 @@ from openai import OpenAI
 
 from core.ollama_url import get_url
 
-base_url = get_url()
+base_url, MAIN_MODEL, VISION_MODEL = get_url()
 
 client = OpenAI(base_url=base_url, api_key='insert_your_api_key_here')
 # Available models: "gpt-4-1106-preview", "gpt-3.5-turbo-1106", or "davinci-codex"
 MODEL_NAME = "gpt-3.5-turbo-1106"
-
+MODEL_NAME = MAIN_MODEL
 
 def api_call(messages, model_name=MODEL_NAME, temperature=0.5, max_tokens=150):
     # if model_name == "gpt-4-1106-preview":

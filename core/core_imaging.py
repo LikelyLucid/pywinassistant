@@ -5,6 +5,9 @@ import requests
 import io
 from PIL import Image
 
+from ollama_url import get_url
+
+url, MAIN_MODEL, VISION_MODEL = get_url()
 # Assuming that the `activate_window_title` function is defined in another module correctly
 from core.window_focus import activate_windowt_title
 
@@ -45,13 +48,17 @@ def encode_image(image_data):
 # Function to analyze an image using OpenAI API
 def analyze_image(base64_image, window_title, additional_context='What’s in this image?'):
     # Your logic to call the OpenAI API
+    if VISION_MODEL:
+        model_name = VISION_MODEL
+    else:
+        model_name = "gpt-4-vision-preview"
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {api_key}"
     }
 
     payload = {
-        "model": "gpt-4-vision-preview",
+        "model": model_name,
         "messages": [
             {
                 "role": "assistant",
