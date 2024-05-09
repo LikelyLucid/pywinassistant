@@ -123,7 +123,7 @@ async def test_model_speed(model_name):
 def get_fastest_ips(model_name):
     return asyncio.run(test_model_speed(model_name))
 
-def get_openai_url(model_name, vision_model="llava:34b"):
+def get_openai_url(model_name="llama3:70b", vision_model="llava:34b"):
     ips = get_fastest_ips(model_name)
     fastest = ips[0][0]
 
